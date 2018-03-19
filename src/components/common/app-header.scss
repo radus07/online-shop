@@ -1,0 +1,14 @@
+.navbar {
+  ul:last-child {
+    li:first-child, li:last-child {
+      a {
+        color: aliceblue;
+      }
+    }
+    li:nth-child(2) {
+      span:hover {
+        color: rgba(255, 255, 255, .5);
+      }
+    }
+  }
+}
