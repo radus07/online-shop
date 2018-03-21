@@ -1,8 +1,8 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import './app-header.scss'
+import './header.scss'
 
-export default function AppHeader () {
+export default function Header () {
   return (
     <nav className="navbar navbar-expand-sm bg-dark navbar-dark">
       <button className="navbar-toggler" data-toggle="collapse" data-target="#navbarContent">
@@ -12,10 +12,7 @@ export default function AppHeader () {
         <Link to={'/home'} className="navbar-brand">Home</Link>
         <ul className="navbar-nav mr-auto">
           <li className="nav-item">
-            <a className="nav-link">Link</a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link">Link</a>
+            <Link to={'/products/all'} className="nav-link">Products</Link>
           </li>
         </ul>
         <ul className="navbar-nav ml-auto">
