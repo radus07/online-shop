@@ -7,7 +7,14 @@ export default function Web () {
     <div className="container">
       <Switch>
         <Redirect exact from={'/'} to={'/home'}/>
-        {webRoutes.map((route, i) => <Route path={route.path} component={route.component} key={i}/>)}
+        {webRoutes.map((route, i) =>
+          <Route
+            path={route.path}
+            render={props => (
+              <route.component {...props} routes={route.routes} />
+            )}
+            key={i}/>
+        )}
       </Switch>
     </div>
   )
