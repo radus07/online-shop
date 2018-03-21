@@ -27,32 +27,32 @@ const brands = [
   {name: 'LG', link: '/products/brand/lg'}
 ]
 
-export default function LeftMenu () {
-  return (
-    <section>
-      <ul className="nav nav-tabs">
-        <li className="nav-item">
-          <a className="nav-link active" data-toggle="tab" href="#categories">Categories</a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link" data-toggle="tab" href="#brands">Brands</a>
-        </li>
-      </ul>
-      <div className="tab-content">
-        <div className="tab-pane active" id="categories">
-          <div className="list-group">
-            {categories.map((category, i) =>
-              <Link key={i} to={category.link} className="list-group-item list-group-item-action">{category.name}</Link>
-            )}
-          </div>
+const LeftMenu = () => (
+  <section>
+    <ul className="nav nav-tabs">
+      <li className="nav-item">
+        <a className="nav-link active" data-toggle="tab" href="#categories">Categories</a>
+      </li>
+      <li className="nav-item">
+        <a className="nav-link" data-toggle="tab" href="#brands">Brands</a>
+      </li>
+    </ul>
+    <div className="tab-content">
+      <div className="tab-pane active" id="categories">
+        <div className="list-group">
+          {categories.map((category, i) =>
+            <Link key={i} to={category.link} className="list-group-item list-group-item-action">{category.name}</Link>
+          )}
         </div>
-        <div className="tab-pane" id="brands">
-          <div className="list-group">
-            {brands.map((brand, i) =>
-              <Link key={i} to={brand.link} className="list-group-item list-group-item-action">{brand.name}</Link>
-            )}
-          </div></div>
       </div>
-    </section>
-  )
-}
+      <div className="tab-pane" id="brands">
+        <div className="list-group">
+          {brands.map((brand, i) =>
+            <Link key={i} to={brand.link} className="list-group-item list-group-item-action">{brand.name}</Link>
+          )}
+        </div></div>
+    </div>
+  </section>
+)
+
+export default LeftMenu
