@@ -1,11 +1,14 @@
 import React from 'react'
 
-import Carousel from '../../common/carousel/Carousel'
+import Carousel from '@/components/common/carousel/Carousel'
 import LeftMenu from './fragments/LeftMenu'
+
+import {productService} from '@/api/products'
 
 class Home extends React.Component {
   constructor (props) {
     super(props)
+
     this.state = {
       /**
        * The list of top product which are sent to carousel component
@@ -15,29 +18,15 @@ class Home extends React.Component {
     this.fetchTopItems = this.fetchTopItems.bind(this)
   }
 
-  componentWillMount () {
+  componentDidMount () {
     this.fetchTopItems()
   }
 
   /**
    * Set the list of top items
    */
-  fetchTopItems () {
-    // todo: receive the list from db
-    this.setState({topProducts: [
-      {
-        title: 'Product One',
-        description: 'The best product!',
-        link: '/products/1',
-        img: 'https://cdn.vox-cdn.com/thumbor/IRvg_2Li9KlAhPSUYCsrbuMQJ5U=/800x0/filters:no_upscale()/cdn.vox-cdn.com/uploads/chorus_asset/file/4045828/tnailnew.0.jpg'
-      },
-      {
-        title: 'Product Two',
-        description: 'The most expensive product!',
-        link: '/products/2',
-        img: 'https://icdn2.digitaltrends.com/image/xiaomi-mi5-0022-2-720x720.jpg?ver=1.jpg'
-      }
-    ]})
+  async fetchTopItems () {
+    this.setState({topProducts: await productService.getProducts()})
   }
 
   render () {

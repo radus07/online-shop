@@ -1,58 +1,74 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import {categoryService} from '@/api/categories'
+import {brandService} from '@/api/brands'
 
-/**
- * The list of categories which are displayed in the `categories` tab
- * @type {*[]}
- * todo: receive the list of categories from db
- */
-const categories = [
-  {name: 'PCs', link: '/products/category/pc'},
-  {name: 'Mobile Phones', link: '/products/category/phones'},
-  {name: 'Gadgets', link: '/products/category/gadgets'},
-  {name: 'TVs', link: '/products/category/tv'},
-  {name: 'For Gamers', link: '/products/category/gamers'}
-]
+class LeftMenu extends React.Component {
+  constructor (props) {
+    super(props)
 
-/**
- * The list of brands which are displayed in the `brands` tab
- * @type {*[]}
- * todo: receive the list of producers from db
- */
-const brands = [
-  {name: 'Apple', link: '/products/brand/apple'},
-  {name: 'Samsung', link: '/products/brand/samsung'},
-  {name: 'Asus', link: '/products/brand/asus'},
-  {name: 'Xiaomi', link: '/products/brand/xiaomi'},
-  {name: 'LG', link: '/products/brand/lg'}
-]
+    this.state = {
+      /**
+       * The list of categories which is rendered in the `categories` tab
+       */
+      categories: [],
+      /**
+       * The list of brands which is rendered in the `brands` tab
+       */
+      brands: []
+    }
+    this.getCategories = this.getCategories.bind(this)
+    this.getBrands = this.getBrands.bind(this)
+  }
 
-const LeftMenu = () => (
-  <section>
-    <ul className="nav nav-tabs">
-      <li className="nav-item">
-        <a className="nav-link active" data-toggle="tab" href="#categories">Categories</a>
-      </li>
-      <li className="nav-item">
-        <a className="nav-link" data-toggle="tab" href="#brands">Brands</a>
-      </li>
-    </ul>
-    <div className="tab-content">
-      <div className="tab-pane active" id="categories">
-        <div className="list-group">
-          {categories.map((category, i) =>
-            <Link key={i} to={category.link} className="list-group-item list-group-item-action">{category.name}</Link>
-          )}
+  componentDidMount () {
+    this.getCategories()
+    this.getBrands()
+  }
+
+  /**
+   * Get the list of categories
+   */
+  async getCategories () {
+    this.setState({categories: await categoryService.getCategories()})
+  }
+
+  /**
+   * Get the list of brands
+   */
+  async getBrands () {
+    this.setState({brands: await brandService.getBrands()})
+  }
+
+  render () {
+    return (
+      <section>
+        <ul className="nav nav-tabs">
+          <li className="nav-item">
+            <a className="nav-link active" data-toggle="tab" href="#categories">Categories</a>
+          </li>
+          <li className="nav-item">
+            <a className="nav-link" data-toggle="tab" href="#brands">Brands</a>
+          </li>
+        </ul>
+        <div className="tab-content">
+          <div className="tab-pane active" id="categories">
+            <div className="list-group">
+              {this.state.categories.map((category, i) =>
+                <Link key={i} to={`/products/category/${category.link}`} className="list-group-item list-group-item-action">{category.name}</Link>
+              )}
+            </div>
+          </div>
+          <div className="tab-pane" id="brands">
+            <div className="list-group">
+              {this.state.brands.map((brand, i) =>
+                <Link key={i} to={`/products/brand/${brand.link}`} className="list-group-item list-group-item-action">{brand.name}</Link>
+              )}
+            </div></div>
         </div>
-      </div>
-      <div className="tab-pane" id="brands">
-        <div className="list-group">
-          {brands.map((brand, i) =>
-            <Link key={i} to={brand.link} className="list-group-item list-group-item-action">{brand.name}</Link>
-          )}
-        </div></div>
-    </div>
-  </section>
-)
+      </section>
+    )
+  }
+}
 
 export default LeftMenu
