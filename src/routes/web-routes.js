@@ -1,8 +1,8 @@
-import Home from '../components/web/home/Home'
-import SignIn from '../components/web/signIn/SignIn'
-import Products from '../components/web/products/Products'
-import ProductsList from '../components/web/products/ProductsList'
-import Product from '../components/web/products/Product'
+import Home from '@/components/web/home/Home'
+import SignIn from '@/components/web/signIn/SignIn'
+import ProductsView from '@/views/web/Products'
+import Products from '@/components/web/products/Products'
+import Product from '@/components/web/products/Product'
 
 const webRoutes = [
   {
@@ -15,19 +15,15 @@ const webRoutes = [
   },
   {
     path: '/products',
-    component: Products,
+    component: ProductsView,
     routes: [
       {
         path: '/products/all',
-        component: ProductsList
+        component: Products
       },
       {
-        path: '/products/category/:category',
-        component: ProductsList
-      },
-      {
-        path: '/products/brand/:brand',
-        component: ProductsList
+        path: '/products/:type/:name',
+        component: Products
       },
       {
         path: '/products/:id',

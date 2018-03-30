@@ -2,8 +2,8 @@ import React from 'react'
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 
 import Header from './components/common/header/Header'
-import Web from './views/Web'
-import Admin from './views/Admin'
+import Web from './views/web/Web'
+import Admin from './views/admin/Admin'
 
 const App = () => (
   <Router>

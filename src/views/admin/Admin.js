@@ -1,6 +1,6 @@
 import React from 'react'
 import {Route, Switch, Redirect} from 'react-router-dom'
-import {adminRoutes} from '../routes/admin-routes'
+import {adminRoutes} from '@/routes/admin-routes'
 
 const Admin = () => (
   <div className="container">
