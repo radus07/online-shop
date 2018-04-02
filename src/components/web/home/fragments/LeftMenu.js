@@ -1,7 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import {categoryService} from '@/api/categories'
-import {brandService} from '@/api/brands'
+import {CategoryService, BrandService} from '@/common/api.service'
 
 class LeftMenu extends React.Component {
   constructor (props) {
@@ -30,14 +29,14 @@ class LeftMenu extends React.Component {
    * Get the list of categories
    */
   async getCategories () {
-    this.setState({categories: await categoryService.getCategories()})
+    this.setState({categories: await CategoryService.getAll()})
   }
 
   /**
    * Get the list of brands
    */
   async getBrands () {
-    this.setState({brands: await brandService.getBrands()})
+    this.setState({brands: await BrandService.getAll()})
   }
 
   render () {

@@ -3,7 +3,7 @@ import React from 'react'
 import Carousel from '@/components/common/carousel/Carousel'
 import LeftMenu from './fragments/LeftMenu'
 
-import {productService} from '@/api/products'
+import {ProductService} from '@/common/api.service'
 
 class Home extends React.Component {
   constructor (props) {
@@ -26,7 +26,7 @@ class Home extends React.Component {
    * Set the list of top items
    */
   async fetchTopItems () {
-    this.setState({topProducts: await productService.getProducts()})
+    this.setState({topProducts: await ProductService.getAll()})
   }
 
   render () {
