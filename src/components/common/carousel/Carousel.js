@@ -9,7 +9,7 @@ const Carousel = (props) => (
     <div className="carousel-inner">
       {props.items.map((item, i) =>
         <div className={(i === 0) ? 'carousel-item active' : 'carousel-item'} key={i}>
-          <Link to={`/products${item.link}`}>
+          <Link to={`/products/${item.link}`}>
             <img className="d-block w-100" src={item.images[0]} height={props.height} alt={item.title}/>
             <div className="carousel-caption d-none d-md-block">
               <h5>{item.title}</h5>
