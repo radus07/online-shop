@@ -1,11 +1,12 @@
-const mongoose = require('mongoose')
-const Category = mongoose.model('Category')
+const CategoryService = require('../../services/category.service')
 
 module.exports = (app) => {
-  app.get('/api/categories', (req, res) => {
-    Category.find({}, (err, result) => {
-      if (err || result.length === 0) res.json({status: 404})
-      else res.json({status: 200, data: result})
-    })
+  app.get('/api/categories', async (req, res) => {
+    try {
+      const categories = await CategoryService.getAll()
+      res.json({status: 200, data: categories})
+    } catch (e) {
+      res.json({status: 404})
+    }
   })
 }

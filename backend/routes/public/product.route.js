@@ -1,14 +1,12 @@
-const mongoose = require('mongoose')
-const Product = mongoose.model('Product')
+const ProductService = require('../../services/product.service')
 
 module.exports = (app) => {
-  app.get('/api/products', (req, res) => {
-    Product.find()
-      .populate('brand')
-      .populate('categories')
-      .exec((err, result) => {
-        if (err || result.length === 0) res.json({status: 404})
-        else res.json({status: 200, data: result})
-      })
+  app.get('/api/products', async (req, res) => {
+    try {
+      const products = await ProductService.getAll()
+      res.json({status: 200, data: products})
+    } catch (e) {
+      res.json({status: 404})
+    }
   })
 }

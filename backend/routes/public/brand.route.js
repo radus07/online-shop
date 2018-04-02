@@ -1,11 +1,12 @@
-const mongoose = require('mongoose')
-const Brand = mongoose.model('Brand')
+const BrandService = require('../../services/brand.service')
 
 module.exports = (app) => {
   app.get('/api/brands', async (req, res) => {
-    Brand.find({}, (err, result) => {
-      if (err || result.length === 0) res.json({status: 404})
-      else res.json({status: 200, data: result})
-    })
+    try {
+      const brands = await BrandService.getAll()
+      res.json({status: 200, data: brands})
+    } catch (e) {
+      res.json({status: 404})
+    }
   })
 }
