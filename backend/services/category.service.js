@@ -5,8 +5,8 @@ const CategoryService = {
   getAll: () => {
     return Category.find()
   },
-  getOneByName: name => {
-    return Category.findOne({name: name})
+  getOneByLink: link => {
+    return Category.findOne({link: {$regex: new RegExp(`^${link}$`, 'i')}})
   }
 }
 

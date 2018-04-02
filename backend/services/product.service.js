@@ -9,7 +9,7 @@ const ProductService = {
   },
   getByCategory: async category => {
     try {
-      const cat = await CategoryService.getOneByName(category)
+      const cat = await CategoryService.getOneByLink(category)
       return Product.find({categories: cat._id}).populate('brand').populate('categories')
     } catch (e) {
       return Promise.reject(e)
@@ -17,7 +17,7 @@ const ProductService = {
   },
   getByBrand: async brand => {
     try {
-      const br = await BrandService.getOneByName(brand)
+      const br = await BrandService.getOneByLink(brand)
       return Product.find({brand: br._id}).populate('brand').populate('categories')
     } catch (e) {
       return Promise.reject(e)

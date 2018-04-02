@@ -5,8 +5,8 @@ const BrandService = {
   getAll: () => {
     return Brand.find()
   },
-  getOneByName: name => {
-    return Brand.findOne({name: name})
+  getOneByLink: link => {
+    return Brand.findOne({link: {$regex: new RegExp(`^${link}$`, 'i')}})
   }
 }
 
