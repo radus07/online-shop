@@ -1,4 +1,5 @@
-const Product = require('../../models/product')
+const mongoose = require('mongoose')
+const Product = mongoose.model('Product')
 
 module.exports = (app) => {
   app.get('/api/products', (req, res) => {

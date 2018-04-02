@@ -1,5 +1,7 @@
 const express = require('express')
 const parser = require('body-parser')
+const CONFIG = require('./config/config')
+const mongoose = require('mongoose')
 const app = express()
 
 app.use(parser.json())
@@ -10,6 +12,10 @@ app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE')
   next()
 })
+
+mongoose.connect(CONFIG.DB_URL + CONFIG.DB_NAME)
+
+require('./models')
 
 require('./routes')(app)
 

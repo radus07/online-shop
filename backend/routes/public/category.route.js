@@ -1,4 +1,5 @@
-const Category = require('../../models/category')
+const mongoose = require('mongoose')
+const Category = mongoose.model('Category')
 
 module.exports = (app) => {
   app.get('/api/categories', (req, res) => {

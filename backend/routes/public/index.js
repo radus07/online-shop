@@ -2,7 +2,7 @@ module.exports = (app) => {
   /**
    * Add all public routes here
    */
-  require('./products')(app)
-  require('./brands')(app)
-  require('./categories')(app)
+  require('./product.route')(app)
+  require('./brand.route')(app)
+  require('./category.route')(app)
 }

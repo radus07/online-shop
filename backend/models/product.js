@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-module.exports = mongoose.model('Product', new Schema({
+mongoose.model('Product', new Schema({
   title: {type: String, required: true},
   description: String,
   images: [String],
